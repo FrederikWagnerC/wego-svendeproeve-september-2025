@@ -1,8 +1,17 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 @theme {
-    --color-background: #000000;
-    --color-text: #FFFFFF;
+    --color-off-white: #F3F4F4;
+    --color-white: #FFFFFF;
+    --color-blue-bright: #00A6DB;
+    --color-blue-medium: #0090BF;
+    --color-blue-dark: #09366D;
+    --color-blue-muted: #3576A7;
+    --color-coral: #E15E60;
+    --color-green: #009933;
+
+    
 }
 
 @layer base {
@@ -11,8 +20,106 @@
         padding: 0;
         box-sizing: border-box;
     }
+    
     body {
         background-color: var(--color-background);
         color: var(--color-text);
+        font-family: 'Lato', sans-serif;
     }
+
+    
+}
+
+@layer components {
+    /* Animation Classes */
+    .slide-in-text {
+        animation: slideInFromBottom 0.8s ease-out;
+    }
+
+    .slide-in-text-delay {
+        animation: slideInFromBottom 0.8s ease-out 0.2s both;
+    }
+
+    .slide-in-text-delay-2 {
+        animation: slideInFromBottom 0.8s ease-out 0.4s both;
+    }
+
+    /* Modal Animation Keyframes */
+    @keyframes modalFadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes modalFadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes modalSlideIn {
+        from {
+            transform: translateY(-100px) scale(0.95);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+    }
+
+    @keyframes modalSlideOut {
+        from {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(-100px) scale(0.95);
+            opacity: 0;
+        }
+    }
+
+    @keyframes slideInFromBottom {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Frontpage Header Styles */
+    .frontpage-header {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .frontpage-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, rgba(9, 54, 109, 0.1), rgba(0, 166, 219, 0.1));
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    /* Smooth transitions for background changes */
+    .frontpage-header {
+        transition: background-image 1s ease-in-out;
+    }
+}
+
+@layer utilities {
+
 }
