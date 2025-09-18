@@ -1,3 +1,8 @@
+import locationStart from '../../assets/locationStart.svg';
+import locationEnd from '../../assets/locationEnd.svg';
+import ferry from '../../assets/ferry.svg';
+import electric from '../../assets/electric.svg';
+
 
 export const LiftCard = ({ lift }) => {
     // Format date and time
@@ -43,13 +48,14 @@ export const LiftCard = ({ lift }) => {
     };
 
 
+
     return (
-        <div className="bg-white rounded-2xl shadow-md p-4 mb-4 border border-gray-100 max-w-[800px] mx-auto">
+        <div className="bg-white rounded-2xl shadow-md h-full min-w-[600px]">
             <div className="flex items-center justify-between">
                 {/* Left section - Driver info and locations */}
-                <div className="flex items-center space-x-4 flex-1 border-r-2 border-gray-200 pr-4">
+                <div className="flex items-center">
                     {/* Driver avatar and info */}
-                    <div className="flex flex-col items-center">
+                    <div className="flex flex-col items-center justify-center px-8">
                         <div className="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center overflow-hidden">
                             {lift.user?.imageUrl ? (
                                 <img
@@ -74,30 +80,40 @@ export const LiftCard = ({ lift }) => {
 
 
                 {/* Date/Time and Route */}
-                <div className="flex-1">
+                <div className="flex-3 border-r-2 border-l-2 border-gray-200 p-4 relative">
+                    <div className='absolute top-4 right-4 flex gap-1'>
+
+                        {lift.useFerry && <img src={ferry} alt="Ferry" className="w-6 h-6 mb-1" />}
+                        {lift.isElectric && <img src={electric} alt="Electric" className="w-6 h-6 mb-1" />}
+
+                    </div>
                     <p className="font-semibold text-gray-800 mb-2">
                         {formatDateTime(lift.departureDate)}
                     </p>
 
                     {/* Route with icons */}
                     <div className="space-y-2">
-                        <div className="flex items-center space-x-2">
-                            <div className="w-3 h-3 border-2 border-blue-500 rounded-full"></div>
-                            <span className="text-sm text-gray-600">
-                                {lift.cityDeparture || 'Departure'}
-                            </span>
-                            <span className="text-xs text-gray-400">
-                                {lift.addressDeparture || ''}
-                            </span>
+                        <div className="flex space-x-2 justify-baseline items-baseline">
+                            <img src={locationStart} alt="Location Start" />
+                            <div className='flex flex-col mb-auto'>
+                                <span className="text-sm text-black font-bold">
+                                    {lift.cityDeparture || 'Departure'}
+                                </span>
+                                <span className="text-xs text-black/80">
+                                    {lift.addressDeparture || ''}
+                                </span>
+                            </div>
                         </div>
-                        <div className="flex items-center space-x-2">
-                            <div className="w-3 h-3 border-2 border-green-500 rounded-full bg-green-500"></div>
-                            <span className="text-sm text-gray-600">
-                                {lift.cityDestination || 'Destination'}
-                            </span>
-                            <span className="text-xs text-gray-400">
-                                {lift.addressDestination || ''}
-                            </span>
+                        <div className="flex items-baseline space-x-2">
+                            <img src={locationEnd} alt="Location End" />
+                            <div className='flex flex-col mb-auto'>
+                                <span className="text-sm text-black font-bold">
+                                    {lift.cityDestination || 'Destination'}
+                                </span>
+                                <span className="text-xs text-black/80">
+                                    {lift.addressDestination || ''}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -105,37 +121,27 @@ export const LiftCard = ({ lift }) => {
 
 
                 {/* Right section - Amenities and Price */}
-                <div className="flex flex-col items-end space-y-2">
-                    {/* Amenities icons */}
-                    <div className="flex space-x-2">
-                        {lift.wifi && (
-                            <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
-                                <span className="text-blue-600 text-xs">📶</span>
-                            </div>
-                        )}
-                        {lift.charging && (
-                            <div className="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center">
-                                <span className="text-yellow-600 text-xs">⚡</span>
-                            </div>
-                        )}
-                    </div>
+                <div className="flex flex-col  items-center justify-between  w-1/4  gap-12 relative">
+
+                    <div className='absolute top-1/2 transform -translate-y-1/2 border border-gray-200 w-full'></div>
 
                     {/* Price */}
-                    <div className="text-right">
-                        <p className="font-bold text-xl text-gray-800">
+                    <div className="text-right w-full h-full px-2 mb-auto self-stretch">
+                        <p className="font-bold text-xl text-black text-center">
                             DKK {lift.pricePerSeat || 125}
                         </p>
                     </div>
 
                     {/* Available seats indicators */}
                     <div className="flex space-x-1">
-                        {[1, 2, 3].map((seat) => (
+                        {[...Array(lift.seatsTotal || 4)].map((_, index) => (
                             <div
-                                key={seat}
-                                className={`w-3 h-3 rounded-full ${seat <= ((lift.seatsTotal || 4) - (lift.seatsBooked || 0))
-                                    ? seat === 1 ? 'bg-green-400' : 'bg-gray-300'
-                                    : 'bg-red-400'
-                                    }`}
+                                key={index}
+                                className={`w-3 h-3 rounded-full ${
+                                    index < ((lift.seatsTotal || 4) - (lift.seatsBooked || 0))
+                                        ? index === 0 ? 'bg-green-400' : 'bg-gray-300'
+                                        : 'bg-red-400'
+                                }`}
                             ></div>
                         ))}
                     </div>

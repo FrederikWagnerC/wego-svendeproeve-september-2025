@@ -2,6 +2,7 @@ import { fetchApi } from "../../utils/fetch/fetch";
 import { LiftsSection } from "../../components/liftsSection/liftSection";
 import { useState, useEffect } from "react";
 import spinner from '../../assets/spinner.svg';
+import { FilterSidebar } from "../../components/filterSidebar/filterSidebar";
 
 export const LiftsPage = () => {
     const [lifts, setLifts] = useState([]);
@@ -45,8 +46,8 @@ export const LiftsPage = () => {
     }
 
     return (
-        <div>
-            <h1>Lifts Page</h1>
+        <div className="flex justify-center mt-8 gap-8">
+            <FilterSidebar />
             <LiftsSection lifts={lifts} />
         </div>
     );
