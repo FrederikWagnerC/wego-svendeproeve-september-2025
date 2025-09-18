@@ -6,7 +6,7 @@ export const FrontpageHeader = ({ slides }) => {
     const [displayText, setDisplayText] = useState("");
     const [animationKey, setAnimationKey] = useState(0);
 
-    // Auto-rotate slides every 15 seconds
+    // ROTATE IMGS
     useEffect(() => {
         if (!slides.length) return;
 
@@ -17,14 +17,13 @@ export const FrontpageHeader = ({ slides }) => {
         return () => clearInterval(interval);
     }, [slides.length]);
 
-    // Handle text transition with proper timing
+    // IMG TRANSITION
     useEffect(() => {
         if (!slides.length) return;
         
         const current = slides[currentSlide];
-        const newText = current?.text || "Your journey starts here";
+        const newText = current?.text;
         
-        // Immediately update the display text and trigger animation
         setDisplayText(newText);
         setAnimationKey(prev => prev + 1);
     }, [currentSlide, slides]);
@@ -46,7 +45,7 @@ export const FrontpageHeader = ({ slides }) => {
 
     return (
         <header 
-            className="frontpage-header relative h-[calc(100vh-150px)] bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-in-out overflow-hidden"
+            className="frontpage-header relative h-screen bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-in-out overflow-hidden"
             style={{
                 backgroundImage: (imageLoaded && imageUrl && !imageError) 
                     ? `url(${imageUrl})` 

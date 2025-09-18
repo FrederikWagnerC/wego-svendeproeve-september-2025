@@ -137,6 +137,28 @@ export const getRecord = async (req: Request, res: Response) => {
       avgStars: avgStars
     }
 
+    const userReviews = { 
+        userReviews: await prisma.review.findMany({
+          where: {
+            reviewedUserId: Number(data?.userId)
+          },
+          select: {
+            id: true,
+            comment: true,
+            numStars: true,
+            createdAt: true,
+            reviewer: {
+              select: {
+                id: true,
+                firstname: true,
+                imageUrl: true
+              }
+            }
+          }
+        })
+      
+    }
+
     const seatsBooked = data?.bookings.reduce((sum, { numSeats = 0}) => sum + numSeats, 0)
 
     const response = {
@@ -144,8 +166,11 @@ export const getRecord = async (req: Request, res: Response) => {
       seatsBooked,
       user: {
         ...(data ? data.user : {}),
-        ...reviewStats
-      }
+        ...reviewStats,
+        ...userReviews
+        
+      },
+      
     }
 
     res.json(response);
