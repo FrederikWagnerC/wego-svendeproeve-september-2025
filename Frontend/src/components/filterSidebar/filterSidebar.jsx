@@ -75,10 +75,10 @@ export const FilterSidebar = () => {
     };
 
     return (
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 w-[240px] h-fit">
+        <div className="bg-white hidden md:block rounded-xl shadow-lg border border-gray-200 p-6 w-[240px] h-fit">
 
 
-            {/* Antal pladser */}
+            {/* SEATS */}
             <div className="mb-4 border-b border-gray-200 pb-4">
                 <div className="flex justify-between items-baseline">
                     <p className="text-base font-bold mb-3">Antal pladser </p><p className="font-bold">{seats}</p>
@@ -96,7 +96,7 @@ export const FilterSidebar = () => {
                 </div>
             </div>
 
-            {/* Bagage */}
+            {/* BAGAGE */}
             <div className="mb-4 border-b border-gray-200 pb-4">
                 <h3 className="text-base font-bold mb-3">Bagage</h3>
                 <div className=" flex flex-row justify-around items-baseline">
@@ -126,7 +126,7 @@ export const FilterSidebar = () => {
                 </div>
             </div>
 
-            {/* Komfort niveau */}
+            {/* COMFORT */}
             <div className="mb-4 border-b border-gray-200 pb-4">
                 <h3 className="font-bold mb-3">Komfort</h3>
                 <div className="flex items-center gap-2">
@@ -141,7 +141,7 @@ export const FilterSidebar = () => {
                 </div>
             </div>
 
-            {/* Præferencer */}
+            {/* PREFERENCES */}
             <div className="mb-4 border-b border-gray-200 pb-4">
                 <h3 className="font-bold mb-3">Præferencer</h3>
                 <div className="flex items-center gap-1">

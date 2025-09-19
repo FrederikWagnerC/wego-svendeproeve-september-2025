@@ -30,7 +30,7 @@ export const FrontPage = () => {
         fetchSlides();
     }, []);
 
-    // Load images for all slides
+    // LOAD IMAGES FOR SLIDES
     useEffect(() => {
         if (!slides.length) return;
 
@@ -82,7 +82,6 @@ export const FrontPage = () => {
 
         loadImages();
 
-        // Cleanup blob URLs when component unmounts
         return () => {
             slidesWithImages.forEach(slide => {
                 if (slide.imageBlobUrl) {

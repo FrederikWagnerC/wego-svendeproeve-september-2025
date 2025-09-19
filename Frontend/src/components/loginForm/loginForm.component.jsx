@@ -22,7 +22,6 @@ export default function FormComponent({ isSignUp = true, onLoginSuccess, formCla
                 if (response.success) {
                     setLoginData(response.data);
                     if (onLoginSuccess) onLoginSuccess();
-                    // Close modal after successful login
                     const modal = document.getElementById("loginModal");
                     if (modal) {
                         modal.classList.add("hidden");

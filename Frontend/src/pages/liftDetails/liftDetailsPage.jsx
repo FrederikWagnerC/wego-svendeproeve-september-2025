@@ -36,7 +36,7 @@ export const LiftDetailsPage = () => {
 
 
     return (
-        <div className="flex justify-center gap-16">
+        <div className="flex flex-col md:flex-row justify-center gap-16">
             {lift && <BackArrow />}
             {lift && <LiftDetailsSection lift={lift } />}
             {lift && <SeatsDetails lift={lift} />} 

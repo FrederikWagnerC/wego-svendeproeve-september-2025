@@ -12,15 +12,13 @@ export const SeatsDetails = ({ lift }) => {
     console.log(lift)
 
     return (
-        <div className=" w-72 h-fit sticky top-24 mt-24">
+        <div className=" w-72 h-fit sticky top-24 mt-24 mx-auto md:mx-0">
 
-            {/* Header */}
             <h3 className="text-lg font-bold mb-4">Pladser</h3>
             <div className='bg-white rounded-2xl shadow-md p-6'>
 
-                {/* Seats List */}
                 <div className="space-y-3 mb-6">
-                    {/* Booked seats */}
+                    {/* BOOKED SEATS */}
                     {bookings && bookings.map((booking, index) => (
                         <div className="flex items-center gap-3 border-b border-gray-200 pb-3" key={index}>
                             <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-300 flex items-center justify-center">
@@ -37,7 +35,7 @@ export const SeatsDetails = ({ lift }) => {
                         </div>
                     ))}
 
-                    {/* Available seats */}
+                    {/* AVAILABLE SEATS */}
                     {availableSeats > 0 && [...Array(availableSeats)].map((_, index) => (
                         <div className="flex items-center gap-3 border-b border-gray-200 pb-3" key={`available-${index}`}>
                             <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-300 flex items-center justify-center">
@@ -54,7 +52,7 @@ export const SeatsDetails = ({ lift }) => {
                     ))}
                 </div>
 
-                {/* Price Section */}
+                {/* PRICE */}
                 <div className=" mb-6">
                     <div className="flex justify-between items-center">
                         <span className="text-gray-600">Pris per plads</span>
@@ -65,7 +63,7 @@ export const SeatsDetails = ({ lift }) => {
                     </div>
                 </div>
 
-                {/* Book Button */}
+                {/* BOOK BUTTON */}
                 {loginData ? (
                     <NavLink to={`/lift/book/${lift.id}`}>
                         <button className="w-full bg-blue-bright text-white py-3 rounded-full font-semibold hover:bg-blue-medium transition-colors">

@@ -1,15 +1,36 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { useFilter } from "../providers/filter";
+import { fetchApi } from "../../utils/fetch/fetch";
+import { useAuth } from "../providers/auth.provider";
+import { toast } from "react-toastify";
 
 export const BookingForm = ({ bookingInfo }) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const { seatsBooked, setSeatsBooked } = useFilter();
+    const { loginData } = useAuth();
+    const tokenData = loginData?.accessToken;
+
 
     const onSubmit = (data) => {
-        console.log('Booking data:', data);
-        // Handle form submission here
+        const dataToSend = {
+            ...data,
+            tripId: bookingInfo?.id
+        };
+
+        fetchApi('/api/bookings', 'POST', dataToSend, tokenData )
+        .then(response => {
+            console.log(response)
+            if (response.success) {
+                const notify = () => toast.success("Booking successful");
+                notify();
+            } else {
+                console.error('Booking failed');
+                const notify = () => toast.error("Booking failed");
+                notify();
+            }
+        });
     };
 
     const availableSeats = bookingInfo ? (bookingInfo.seatsTotal - bookingInfo.seatsBooked) : 0;
@@ -22,34 +43,34 @@ export const BookingForm = ({ bookingInfo }) => {
             <h1 className="text-2xl font-bold mb-6">Book et lift</h1>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                {/* Pladser Dropdown */}
+                {/* SEATS */}
                 <div>
                     <label className="block text-sm font-medium mb-2">Pladser</label>
                     <select
-                        {...register("seats", { required: "Vælg antal pladser" })}
+                        {...register("numSeats", { required: "Vælg antal pladser" })}
                         className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-bright"
                         onChange={(e) => setSeatsBooked(parseInt(e.target.value))}
                         value={seatsBooked}
                     >
-                        {[...Array(availableSeats)].map((_, index) => (
+                        {availableSeats > 0 && [...Array(availableSeats)].map((_, index) => (
                             <option key={index} value={index + 1}>{index + 1}</option>
                         ))}
                     </select>
                     {errors.seats && <p className="text-red-500 text-sm mt-1">{errors.seats.message}</p>}
                 </div>
 
-                {/* Besked til Yamal */}
+                {/* MESSAGE */}
                 <div>
                     <label className="block text-sm font-medium mb-2">Besked til {bookingInfo?.user?.firstname}</label>
                     <textarea
-                        {...register("message")}
+                        {...register("comment")}
                         className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-bright resize-none"
                         rows="4"
                         placeholder="Skriv en besked..."
                     />
                 </div>
 
-                {/* Kortnummer */}
+                {/* "CARD" INFO */}
                 <div>
                     <label className="block text-sm font-medium mb-2">Kortnummer</label>
                     <input
@@ -61,7 +82,7 @@ export const BookingForm = ({ bookingInfo }) => {
                     />
                 </div>
 
-                {/* Udløbsdato and CVC */}
+                {/*  */}
                 <div className="grid grid-cols-2 gap-4">
                     <div>
                         <label className="block text-sm font-medium mb-2">Udløbsdato</label>
@@ -86,7 +107,7 @@ export const BookingForm = ({ bookingInfo }) => {
                     </div>
                 </div>
 
-                {/* Submit Button */}
+                {/* SUBMUT */}
                 <button
                     type="submit"
                     className="w-full bg-blue-bright text-white py-4 rounded-full font-semibold text-lg hover:bg-blue-medium transition-colors"
@@ -94,7 +115,7 @@ export const BookingForm = ({ bookingInfo }) => {
                     Book & betal
                 </button>
 
-                {/* Tilbage Button */}
+                {/* BACK */}
                 <button
                     type="button"
                     className="w-full text-lg font-semibold bg-blue-bright/25 text-black py-4 rounded-full hover:text-white hover:bg-blue-medium transition-all"

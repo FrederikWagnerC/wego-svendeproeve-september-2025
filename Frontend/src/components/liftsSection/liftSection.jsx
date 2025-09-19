@@ -32,7 +32,7 @@ export const LiftsSection = ({ lifts }) => {
     const dayAfterTomorrow = new Date(today);
     dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 2);
     
-    // Create three separate arrays
+    // FILTER LIFTS INTO TODAY, TOMORROW, AND OTHER
     const todayLifts = filteredLifts.filter(lift => {
         const liftDate = new Date(lift.departureDate);
         const liftDateOnly = new Date(liftDate);
@@ -40,15 +40,15 @@ export const LiftsSection = ({ lifts }) => {
         
         const now = new Date();
         
-        // Check if it's today AND the time hasn't passed yet
+        // CHECKS FOR LIFTS LATER TODAY
         return liftDateOnly.getTime() === today.getTime() && liftDate > now;
-    }).sort((a, b) => new Date(a.date) - new Date(b.date)); // Sort by full datetime (includes time)
+    }).sort((a, b) => new Date(a.date) - new Date(b.date)); 
     
     const tomorrowLifts = filteredLifts.filter(lift => {
         const liftDate = new Date(lift.departureDate);
         liftDate.setHours(0, 0, 0, 0);
         return liftDate.getTime() === tomorrow.getTime();
-    }).sort((a, b) => new Date(a.date) - new Date(b.date)); // Sort by full datetime (includes time)
+    }).sort((a, b) => new Date(a.date) - new Date(b.date));
     
     const otherLifts = filteredLifts.filter(lift => {
         const liftDate = new Date(lift.departureDate);
@@ -59,8 +59,8 @@ export const LiftsSection = ({ lifts }) => {
 
     return (
         <>
-            <section className="flex flex-col gap-8 min-w-[750px]">
-                {/* Today's Lifts */}
+            <section className="flex flex-col gap-8 md:min-w-[750px] min-w-[400px] px-4 md:px-0">
+                {/* TODAY */}
                 {todayLifts.length > 0 && (
                     <div className="flex flex-col">
                         <h2 className="text-2xl font-bold mb-4">Næste lift</h2>
@@ -72,7 +72,7 @@ export const LiftsSection = ({ lifts }) => {
                     </div>
                 )}
 
-                {/* Tomorrow's Lifts */}
+                {/* TOMORROW */}
                 {tomorrowLifts.length > 0 && (
                     <div className="flex flex-col">
                         <h2 className="text-2xl font-bold mb-4">I morgen</h2>
@@ -84,7 +84,7 @@ export const LiftsSection = ({ lifts }) => {
                     </div>
                 )}
 
-                {/* Other Lifts */}
+                {/* OTHER */}
                 {otherLifts.length > 0 && (
                     <div className="flex flex-col">
                         <h2 className="text-2xl font-bold mb-4">Senere datoer</h2>
@@ -96,7 +96,7 @@ export const LiftsSection = ({ lifts }) => {
                     </div>
                 )}
 
-                {/* No lifts message */}
+                {/* NO LIFTS */}
                 {todayLifts.length === 0 && tomorrowLifts.length === 0 && otherLifts.length === 0 && (
                     <div className="text-center flex flex-col">
                         <p className="text-gray-600 text-lg">No lifts available at the moment.</p>
