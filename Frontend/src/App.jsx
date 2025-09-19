@@ -10,6 +10,9 @@ import { ToastContainer } from "react-toastify";
 import { Footer } from './components/footer/footer'
 import { LiftsPage } from './pages/liftsPage/liftsPage'
 import { FilterProvider } from './components/providers/filter'
+import { LiftDetailsPage } from './pages/liftDetails/liftDetailsPage'
+import { HowItWorksModal } from './components/howItWorksModal/howItWorksModal.jsx'
+import { BookingPage } from './pages/bookingPage/bookingPage.jsx'
 
 function App() {
 
@@ -20,10 +23,13 @@ function App() {
       <FilterProvider>
         <Navbar />
         <LoginModal />
+        <HowItWorksModal />
         <Layout>
           <Routes>
             <Route path="/" element={<FrontPage />} />
-            <Route path="/lifter" element={<LiftsPage />} />
+            <Route path="/lift" element={<LiftsPage />} />
+            <Route path="/lift/:liftId" element={<LiftDetailsPage />} />
+            <Route path="/lift/book/:liftId" element={<BookingPage />} />
 
 
             <Route path="/*" element={<ErrorPage />} />

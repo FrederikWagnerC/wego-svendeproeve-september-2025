@@ -3,6 +3,7 @@ import { LiftsSection } from "../../components/liftsSection/liftSection";
 import { useState, useEffect } from "react";
 import spinner from '../../assets/spinner.svg';
 import { FilterSidebar } from "../../components/filterSidebar/filterSidebar";
+import { DestinationNav } from "../../components/destinationNav/destinationNav";
 
 export const LiftsPage = () => {
     const [lifts, setLifts] = useState([]);
@@ -46,9 +47,11 @@ export const LiftsPage = () => {
     }
 
     return (
-        <div className="flex justify-center mt-8 gap-8">
-            <FilterSidebar />
-            <LiftsSection lifts={lifts} />
+        <div className="flex justify-center mt-8 gap-8 relative">
+
+                <FilterSidebar />
+                <LiftsSection lifts={lifts} />
+
         </div>
     );
 };

@@ -2,6 +2,7 @@ import locationStart from '../../assets/locationStart.svg';
 import locationEnd from '../../assets/locationEnd.svg';
 import ferry from '../../assets/ferry.svg';
 import electric from '../../assets/electric.svg';
+import { NavLink } from 'react-router';
 
 
 export const LiftCard = ({ lift }) => {
@@ -31,7 +32,7 @@ export const LiftCard = ({ lift }) => {
         }
     };
 
-    const renderStars = (rating = lift.user.avgStars) => {
+    const renderStars = (rating = Math.round(lift.user.avgStars)) => {
         return (
             <div className="flex">
                 {[1, 2, 3, 4, 5].map((star) => (
@@ -49,8 +50,10 @@ export const LiftCard = ({ lift }) => {
 
 
 
+
     return (
-        <div className="bg-white rounded-2xl shadow-md h-full min-w-[600px]">
+        <div className="bg-white rounded-2xl shadow-md h-full min-w-[600px] transition-all">
+            <NavLink to={`/lift/${lift.id}`} >
             <div className="flex items-center justify-between">
                 {/* Left section - Driver info and locations */}
                 <div className="flex items-center">
@@ -133,20 +136,20 @@ export const LiftCard = ({ lift }) => {
                     </div>
 
                     {/* Available seats indicators */}
-                    <div className="flex space-x-1">
-                        {[...Array(lift.seatsTotal || 4)].map((_, index) => (
+                    <div className="flex flex-row-reverse gap-1">
+                        {[...Array(lift.seatsTotal)].map((_, index) => (
                             <div
                                 key={index}
                                 className={`w-3 h-3 rounded-full ${
-                                    index < ((lift.seatsTotal || 4) - (lift.seatsBooked || 0))
-                                        ? index === 0 ? 'bg-green-400' : 'bg-gray-300'
-                                        : 'bg-red-400'
+                                    console.log(index , lift.seatsBooked),
+                                    index < lift.seatsBooked ? 'bg-red-500' : 'bg-green-500'
                                 }`}
                             ></div>
                         ))}
                     </div>
                 </div>
             </div>
+            </NavLink >
         </div>
     );
 };

@@ -13,6 +13,9 @@ export const FilterProvider = ({ children }) => {
     const [animalsAllowed, setAnimalsAllowed] = useState(false)
     const [childrenAllowed, setChildrenAllowed] = useState(false)
     const [smokingAllowed, setSmokingAllowed] = useState(false)
+    const [destinationStart, setDestinationStart] = useState("")
+    const [destinationEnd, setDestinationEnd] = useState("")
+    const [seatsBooked, setSeatsBooked] = useState(1)
 
     return (
         <FilterContext.Provider value={{
@@ -24,7 +27,10 @@ export const FilterProvider = ({ children }) => {
             music, setMusic,
             animalsAllowed, setAnimalsAllowed,
             childrenAllowed, setChildrenAllowed,
-            smokingAllowed, setSmokingAllowed
+            smokingAllowed, setSmokingAllowed,
+            destinationStart, setDestinationStart,
+            destinationEnd, setDestinationEnd,
+            seatsBooked, setSeatsBooked
         }}>
             {children}
         </FilterContext.Provider>

@@ -4,11 +4,11 @@ import { useMemo } from "react";
 
 
 export const LiftsSection = ({ lifts }) => {
-    const { seats, bagageSmall, bagageMedium, bagageLarge, comfort, music, animalsAllowed, childrenAllowed, smokingAllowed } = useFilter();
+    const { seats, bagageSmall, bagageMedium, bagageLarge, comfort, music, animalsAllowed, childrenAllowed, smokingAllowed, destinationStart, destinationEnd } = useFilter();
 
     const filteredLifts = useMemo(() => {
         return lifts.filter(lift => {
-            if ((lift.seatsTotal - lift.seatsBooked -1) < seats) return false;
+            if ((lift.seatsTotal - lift.seatsBooked) < seats) return false;
             if (bagageSmall && lift.bagSizeId !== 1) return false;
             if (bagageMedium && lift.bagSizeId !== 2) return false;
             if (bagageLarge && lift.bagSizeId !== 3) return false;
@@ -17,9 +17,11 @@ export const LiftsSection = ({ lifts }) => {
             if (animalsAllowed && !lift.allowPets) return false;
             if (childrenAllowed && !lift.allowChildren) return false;
             if (smokingAllowed && !lift.allowSmoking) return false;
+            if (destinationStart && lift.cityDeparture.toLowerCase() !== destinationStart.toLowerCase()) return false;
+            if (destinationEnd && lift.cityDestination.toLowerCase() !== destinationEnd.toLowerCase()) return false;
             return true;
         });
-    }, [lifts, seats, bagageSmall, bagageMedium, bagageLarge, comfort, music, animalsAllowed, childrenAllowed, smokingAllowed]);
+    }, [lifts, seats, bagageSmall, bagageMedium, bagageLarge, comfort, music, animalsAllowed, childrenAllowed, smokingAllowed, destinationStart, destinationEnd]);
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -57,7 +59,7 @@ export const LiftsSection = ({ lifts }) => {
 
     return (
         <>
-            <section className="flex flex-col gap-8 justify-center min-w-[750px]">
+            <section className="flex flex-col gap-8 min-w-[750px]">
                 {/* Today's Lifts */}
                 {todayLifts.length > 0 && (
                     <div className="flex flex-col">
