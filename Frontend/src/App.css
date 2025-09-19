@@ -31,7 +31,6 @@
 }
 
 @layer components {
-    /* Animation Classes */
     .slide-in-text {
         animation: slideInFromBottom 0.8s ease-out;
     }
@@ -44,7 +43,6 @@
         animation: slideInFromBottom 0.8s ease-out 0.4s both;
     }
 
-    /* Modal Animation Keyframes */
     @keyframes modalFadeIn {
         from {
             opacity: 0;
@@ -115,7 +113,6 @@
 
 
 
-    /* Smooth transitions for background changes */
     .frontpage-header {
         transition: background-image 1s ease-in-out;
     }
