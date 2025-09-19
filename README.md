@@ -1,28 +1,92 @@
-# WeGo 
-## Svendeprøve-prøve August 2025
-Front- og backend til svendeprøve WeGo, September 2025
+# WeGo - Svendeprøve September 2025
 
-# Backend
+WeGo er en moderne ride-sharing platform udviklet som svendeprøve projekt. Platformen forbinder rejsende og tilbyder en nem måde at dele transport på.
 
-* **Formål:** Pre-installeret REST API.
-* **Stack:** Node.js, Express, TypeScript, Prisma.
-* **Database:** MySQL (kræver `DATABASE_URL` i `.env`).
-* **Struktur:** `src/` (routes, controllers, middleware), `prisma/` (schema & migrations).
-* **Kom i gang:**
+## Projektbeskrivelse
 
-  1. `npm install`
-  2. Opret `.env` med `DATABASE_URL=...`
-  3. (Første gang) `npx prisma migrate dev`
-  4. `npm run dev` for at starte API’et
+WeGo består af en React frontend og en Node.js/Express backend med Prisma ORM til database-håndtering. Projektet inkluderer funktioner som brugerautentificering, booking af ture, anmeldelser og dynamisk indhold.
 
-# Frontend
+## Teknologier
 
-* **Formål:** Her bygger eleverne hele frontend-projektet.
-* **Stack:** React + Vite.
-* **API-adresse (valgfrit):** Sæt `VITE_API_URL` i `.env` hvis UI’et skal pege på en anden backend-URL.
-* **Kom i gang:**
+### Frontend
+- **React 19** - Modern UI framework
+- **Vite** - Hurtig udviklings- og build-tool
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **React Router 7** - Client-side routing
+- **React Hook Form** - Formular håndtering
+- **React Toastify** - Notifikationer
 
-  1. `npm install`
-  2. `npm run dev` for at starte Vite-udviklerserveren
+### Backend
+- **Node.js** med **TypeScript**
+- **Express 5** - Web application framework
+- **Prisma ORM** - Database toolkit
+- **JWT** - Authentication
+- **bcrypt** - Password hashing
+- **MySQL** - Database
 
-> Tip: Kør backend først, så frontend kan hente data fra API’et.
+
+## Installation & Opsætning
+
+### 1. Klon repositoriet
+```bash
+git clone https://github.com/FrederikWagnerC/wego-svendeproeve-september-2025.git
+cd wego-svendeproeve-september-2025
+```
+
+### 2. Installér rod-afhængigheder
+```bash
+npm install
+```
+
+### 3. Opsæt Backend
+
+#### Naviger til backend mappen
+```bash
+cd Backend
+npm install
+```
+
+#### Opret .env fil
+```bash
+cp .env.example .env
+```
+
+#### Konfigurer database forbindelse
+Rediger `.env` filen og indsæt dine database oplysninger:
+```env
+DATABASE_URL="mysql://[dbuser]:[dbpassword]@[dbhost]:[dbport]/[dbname]"
+JWT_SECRET="din-jwt-secret-nøgle"
+```
+
+#### Initialiser database
+
+**Med fulle rettigheder (lokal database):**
+```bash
+npm run init
+```
+
+**Med begrænsede rettigheder (online database):**
+```bash
+npm run push
+```
+
+#### Start backend serveren
+```bash
+npm run dev
+```
+Serveren kører på `http://localhost:3000`
+
+### 4. Opsæt Frontend
+
+#### Åbn ny terminal og naviger til frontend
+```bash
+cd Frontend
+npm install
+```
+
+#### Start frontend udviklings-server
+```bash
+npm run dev
+```
+Frontend kører på `http://localhost:5173`
+
