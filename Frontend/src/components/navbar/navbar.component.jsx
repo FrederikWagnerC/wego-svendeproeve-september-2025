@@ -9,24 +9,28 @@ import homeIcon from "../../assets/homeIcon.svg"
 import searchIcon from "../../assets/searchIcon.svg"
 import { useHowItWorksModal } from "../howItWorksModal/howItWorksModal";
 import { DestinationNav } from "../destinationNav/destinationNav";
+import { useLocation } from "react-router";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { loginData, logout } = useAuth();
   const { loginModalHandler } = useLoginModal();
   const { howItWorksModalHandler } = useHowItWorksModal();
+  const location = useLocation();
 
+  console.log(location.pathname)
+  console.log(location.pathname.includes('/lift/book/'))
 
   return (
     <>
-      <nav className="bg-white w-full z-50 h-24">
-        <div className=" mx-auto px-16 py-4 ">
+      <nav className="bg-white w-full z-50 h-24 sticky top-0 md:relative">
+        <div className=" mx-auto lg:px-16 py-4 px-8 ">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-end gap-8">
               <NavLink to="/" className="text-xl font-bold">
                 <img src={wegoLogo} alt="Logo" className="h-16 hover:scale-110 transition-transform duration-300" />
               </NavLink>
-              {/* Desktop Menu */}
+              {/* DESKTOP */}
               <div className="hidden gap-8 md:flex text-black py-2">
                 <NavLink to="/lift" className="hover:bg-off-white p-2 rounded-2xl transition">Find et lift</NavLink>
                 <p onClick={howItWorksModalHandler} className="hover:bg-off-white p-2 rounded-2xl transition cursor-pointer">Sådan virker det</p>
@@ -54,7 +58,7 @@ export const Navbar = () => {
 
 
 
-            {/* Mobile Menu Button */}
+            {/* MOBILE BUTTON */}
             <div className="md:hidden">
               <button onClick={() => setIsOpen(!isOpen)}>
                 <img src={burgerMenuSvg} alt="Menu" className="w-6 h-6" />
@@ -62,15 +66,15 @@ export const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile Menu */}
-          <div className={`md:hidden px-12 fixed z-30 w-screen h-screen top-0 left-0 items-center justify-center bg-white transition-all duration-500 ease-in-out ${isOpen ? 'translate-x-0 pointer-events-auto' : 'translate-x-full pointer-events-none'}`}>
+          {/* MOBILE MENU */}
+          <div className={`md:hidden px-12 fixed z-50 w-screen h-screen top-0 left-0 items-center justify-center bg-white transition-all duration-500 ease-in-out ${isOpen ? 'translate-x-0 pointer-events-auto' : 'translate-x-full pointer-events-none'}`}>
             <div className="h-full pt-32 pb-3 space-y-1 sm:px-3 text-black flex flex-col">
               <NavLink onClick={() => setIsOpen(false)} to="/"
                 className="hover:bg-off-white p-2 rounded-2xl transition text-black text-xl font-light">
                 <img src={homeIcon} alt="Home" className="inline-block mr-4" />
                 Forside
               </NavLink>
-              <NavLink onClick={() => setIsOpen(false)} to="/lifter"
+              <NavLink onClick={() => setIsOpen(false)} to="/lift"
                 className="hover:bg-off-white p-2 rounded-2xl transition text-black text-xl font-light">
                 <img src={searchIcon} alt="Search" className="inline-block mr-4" />
                 Find et lift
@@ -82,8 +86,8 @@ export const Navbar = () => {
                 </NavLink>
               )}
               {loginData ? (
-                <NavLink to="/" onClick={logout} className="btn btn-primary">
-                  Logout
+                <NavLink to="/" onClick={logout} className="mt-4 bg-blue-bright rounded-2xl text-white p-3 text-xl">
+                  Log ud
                 </NavLink>
               ) : (
                 <>
@@ -104,7 +108,7 @@ export const Navbar = () => {
           </div>
         </div>
       </nav>
-      <DestinationNav />
+      {!location.pathname.includes('/lift/book/') && <DestinationNav />}
     </>
   );
 };

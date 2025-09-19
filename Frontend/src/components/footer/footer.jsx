@@ -5,7 +5,7 @@ export const Footer = () => {
 
     return (
         <footer
-            className="relative min-h-[150px] sm:min-h-[180px] md:min-h-[220px] md:mt-[-220px] sm:mt-[-180px] mt-[-150px]"
+            className="relative min-h-[250px] md:min-h-[220px] md:mt-[-220px] sm:mt-[-180px] mt-[-150px]"
 
         >
             <img

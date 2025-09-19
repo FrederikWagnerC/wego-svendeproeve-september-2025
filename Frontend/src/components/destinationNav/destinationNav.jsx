@@ -39,7 +39,7 @@ export const DestinationNav = () => {
     }
 
     return (
-        <div className="flex gap-4 justify-center items-center sticky bg-white top-0 z-40 mt-[1px] border-t border-gray-200 py-4">
+        <div className="flex flex-col md:flex-row gap-4 justify-center items-center md:sticky bg-white top-0 z-40 mt-[1px] border-t border-gray-200 py-4">
             <input
                 id="destinationStart"
                 type="text"

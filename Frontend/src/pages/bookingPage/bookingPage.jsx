@@ -42,7 +42,7 @@ export const BookingPage = () => {
         }
 
         return (
-            <div className="flex justify-center gap-8">
+            <div className="flex flex-col md:flex-row justify-center gap-8">
                 {bookingInfo && <BookingForm bookingInfo={bookingInfo} />}
                 {bookingInfo && <BookingLiftDetails lift={bookingInfo} />}
             </div>

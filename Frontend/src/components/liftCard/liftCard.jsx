@@ -52,12 +52,12 @@ export const LiftCard = ({ lift }) => {
 
 
     return (
-        <div className="bg-white rounded-2xl shadow-md h-full min-w-[600px] transition-all">
+        <div className="bg-white rounded-2xl shadow-md h-full md:max-w-[600px] transition-all max-w-[400px] w-full">
             <NavLink to={`/lift/${lift.id}`} >
             <div className="flex items-center justify-between">
-                {/* Left section - Driver info and locations */}
+                {/* LEFT SECTION */}
                 <div className="flex items-center">
-                    {/* Driver avatar and info */}
+                    {/* DRIVER */}
                     <div className="flex flex-col items-center justify-center px-8">
                         <div className="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center overflow-hidden">
                             {lift.user?.imageUrl ? (
@@ -82,7 +82,7 @@ export const LiftCard = ({ lift }) => {
                 </div>
 
 
-                {/* Date/Time and Route */}
+                {/* DATE */}
                 <div className="flex-3 border-r-2 border-l-2 border-gray-200 p-4 relative">
                     <div className='absolute top-4 right-4 flex gap-1'>
 
@@ -94,7 +94,7 @@ export const LiftCard = ({ lift }) => {
                         {formatDateTime(lift.departureDate)}
                     </p>
 
-                    {/* Route with icons */}
+                    {/* ROUTE */}
                     <div className="space-y-2">
                         <div className="flex space-x-2 justify-baseline items-baseline">
                             <img src={locationStart} alt="Location Start" />
@@ -123,19 +123,19 @@ export const LiftCard = ({ lift }) => {
 
 
 
-                {/* Right section - Amenities and Price */}
+                {/* RIGHT SECTION */}
                 <div className="flex flex-col  items-center justify-between  w-1/4  gap-12 relative">
 
                     <div className='absolute top-1/2 transform -translate-y-1/2 border border-gray-200 w-full'></div>
 
-                    {/* Price */}
+                    {/* PRICE */}
                     <div className="text-right w-full h-full px-2 mb-auto self-stretch">
                         <p className="font-bold text-xl text-black text-center">
                             DKK {lift.pricePerSeat || 125}
                         </p>
                     </div>
 
-                    {/* Available seats indicators */}
+                    {/* AVAILABLE SEATS */}
                     <div className="flex flex-row-reverse gap-1">
                         {[...Array(lift.seatsTotal)].map((_, index) => (
                             <div

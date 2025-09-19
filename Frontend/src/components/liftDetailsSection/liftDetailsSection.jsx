@@ -44,7 +44,7 @@ export const LiftDetailsSection = ({ lift }) => {
     };
 
     return (
-        <section className="bg-white p-6 rounded-2xl shadow-md max-w-[600px]">
+        <section className="bg-white p-6 rounded-2xl shadow-md max-w-[400px] md:max-w-[600px] mx-auto md:mx-0">
             <div>
                 <h3 className="font-bold text-xl">{cityDeparture} til {cityDestination}</h3>
                 <p>{new Date(departureDate).toLocaleString('da-DK', {  weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric' })}</p>
@@ -96,8 +96,8 @@ export const LiftDetailsSection = ({ lift }) => {
 
                 {/* PREFERENCES  */}
                 <h5 className='mt-6 mb-2 text-xl'>Præferencer</h5>
-                <div className='flex flex-wrap w-full gap-2 min-w-[250px]'>
-                    <div className='flex gap-2 items-center flex-1 '>
+                <div className='flex flex-wrap w-full gap-2'>
+                    <div className='flex gap-2 items-center flex-1  min-w-[250px]'>
                         <p className={`text-2xl ${allowPets ? 'text-green-500' : 'text-red-500'}`}>{allowPets ? '✓' : '×'}</p>
                         <p>Kæledyr</p>
 
@@ -138,14 +138,14 @@ export const LiftDetailsSection = ({ lift }) => {
             <div className="mt-8">
                 <h4 className="text-2xl font-bold mb-4">Chaufføren:</h4>
 
-                {/* Driver Info */}
-                <div className="flex gap-8 mb-6">
+                {/* DRIVER INFO */}
+                <div className="flex flex-col md:flex-row gap-8 mb-6">
                     <img
                         src={user.imageUrl || 'https://i.pravatar.cc/150?u=default'}
                         alt={`${user.firstname} ${user.lastname}`}
-                        className="w-60 h-60 rounded-full object-cover"
+                        className=" w-60 h-60 rounded-full object-cover"
                     />
-                    <div className=" gap-4 flex flex-col ">
+                    <div className=" gap-4 flex flex-col">
                         <div>
                             <h5 className="font-bold text-xl">{user.firstname}</h5>
                             <div className="flex items-center gap-1 mb-1">
@@ -163,7 +163,7 @@ export const LiftDetailsSection = ({ lift }) => {
 
                 </div>
 
-                {/* Reviews */}
+                {/* REVIEWS */}
                 <div className="space-y-4">
                     {user.userReviews.map((review) => (
                         <div key={review.id} className="flex gap-3 p-4 bg-off-white rounded-2xl">
