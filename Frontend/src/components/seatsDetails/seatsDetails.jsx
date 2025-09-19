@@ -58,7 +58,7 @@ export const SeatsDetails = ({ lift }) => {
                         <span className="text-gray-600">Pris per plads</span>
                         <div className="flex items-center gap-2">
                             <span className="text-gray-400 text-sm">DKK</span>
-                            <span className="text-2xl font-bold text-gray-800 ml-1">{pricePerSeat}</span>
+                            <span className="text-2xl font-bold text-gray-800 ml-1">{Number(pricePerSeat).toLocaleString('da-DK', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                         </div>
                     </div>
                 </div>

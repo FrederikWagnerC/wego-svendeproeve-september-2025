@@ -40,7 +40,7 @@ export const BookingLiftDetails = ({ lift }) => {
             <div className="border-t border-gray-200 pt-4 p-6">
                 <div className="flex justify-between items-center">
                     <span className="text-lg font-semibold text-gray-800">Samlet pris</span>
-                    <span className="text-xl font-bold text-gray-800">DKK {totalPrice}</span>
+                    <span className="text-xl font-bold text-gray-800">DKK {totalPrice.toLocaleString('da-DK', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 </div>
             </div>
         </div>

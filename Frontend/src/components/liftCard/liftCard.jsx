@@ -48,7 +48,7 @@ export const LiftCard = ({ lift }) => {
         );
     };
 
-
+console.log(typeof lift.pricePerSeat)
 
 
     return (
@@ -131,7 +131,10 @@ export const LiftCard = ({ lift }) => {
                     {/* PRICE */}
                     <div className="text-right w-full h-full px-2 mb-auto self-stretch">
                         <p className="font-bold text-xl text-black text-center">
-                            DKK {lift.pricePerSeat || 125}
+                            DKK {
+                            Number(lift.pricePerSeat).toLocaleString('da-DK', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+                            
+                            }
                         </p>
                     </div>
 
