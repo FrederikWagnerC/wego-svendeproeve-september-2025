@@ -52,7 +52,7 @@ export const FrontpageHeader = ({ slides }) => {
                     : `url(${spinner})`
             }}
         >
-            {/* Loading overlay */}
+            {/* LOADING */}
             {current?.imageLoading && (
                 <div className="absolute inset-0 bg-gray-200 flex items-center justify-center z-[5]">
                     <div className="text-center">
@@ -62,7 +62,7 @@ export const FrontpageHeader = ({ slides }) => {
                 </div>
             )}
 
-            {/* Content with key-based animation reset */}
+            {/* CONTENT */}
             <div key={animationKey} className="relative z-10 h-full flex items-center justify-center text-center px-4">
                 <div className="max-w-4xl mx-auto p-6 rounded-lg">
                     <p className="text-2xl md:text-3xl lg:text-4xl text-white slide-in-text-delay font-medium drop-shadow-lg">
