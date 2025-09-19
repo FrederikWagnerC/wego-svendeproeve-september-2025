@@ -141,7 +141,6 @@ export const LiftCard = ({ lift }) => {
                             <div
                                 key={index}
                                 className={`w-3 h-3 rounded-full ${
-                                    console.log(index , lift.seatsBooked),
                                     index < lift.seatsBooked ? 'bg-red-500' : 'bg-green-500'
                                 }`}
                             ></div>

@@ -18,8 +18,6 @@ export const Navbar = () => {
   const { howItWorksModalHandler } = useHowItWorksModal();
   const location = useLocation();
 
-  console.log(location.pathname)
-  console.log(location.pathname.includes('/lift/book/'))
 
   return (
     <>

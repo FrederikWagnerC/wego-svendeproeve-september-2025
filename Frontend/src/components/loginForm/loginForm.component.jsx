@@ -54,7 +54,6 @@ export default function FormComponent({ isSignUp = true, onLoginSuccess, formCla
             });
             return;
         }
-        console.log(data);
     }
 
     return (

@@ -67,6 +67,7 @@ export const BookingForm = ({ bookingInfo }) => {
                         className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-bright resize-none"
                         rows="4"
                         placeholder="Skriv en besked..."
+                        value=" "
                     />
                 </div>
 

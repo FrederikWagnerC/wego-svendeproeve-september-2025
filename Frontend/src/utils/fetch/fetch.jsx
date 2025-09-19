@@ -14,7 +14,6 @@ export const fetchApi = async (
     ...(token ? { Authorization: `Bearer ${token}` } : {})
   };
 
-  console.log(endpoint, method, body, token);
  
   const config = {
     method,
@@ -24,9 +23,7 @@ export const fetchApi = async (
  
   try {
     const url = `${endpoint}`;
-    console.log(url, config);
     const res = await fetch(`${url}`, config);
-    console.log('Response:', res);
  
     // Tjek om svaret er JSON og parse det
     const isJson = res.headers.get('Content-Type')?.includes('application/json');
